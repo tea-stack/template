@@ -1,0 +1,28 @@
+{
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+    "editor.wordWrap": "off",
+    "eslint.options": {
+        "extensions": [
+            ".ts",
+            ".js",
+            ".html"
+        ]
+    },
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+        "html"
+    ],
+    "files.encoding": "utf8",
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "html.format.wrapLineLength": 0,
+    "scss.format.newlineBetweenRules": false,
+    "scss.format.preserveNewLines": false,
+    "stylelint.validate": [
+        "css",
+        "scss"
+    ],
+    "typescript.tsdk": "./node_modules/typescript/lib"
+}

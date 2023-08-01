@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "outDir": "../dist/main",
+        "sourceMap": false,
+        "target": "esnext"
+    },
+    "extends": "../tsconfig.base.json",
+    "files": [
+        "./src/app.ts",
+        "./src/preload.ts"
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
+    },
+    "compilerOptions": {
+        "lib": [
+            "dom",
+            "es2022"
+        ],
+        "outDir": "../dist/out-tsc/app",
+        "types": []
+    },
+    "extends": "../tsconfig.base.json",
+    "files": [
+        "./src/main.ts"
+    ],
+    "include": [
+        "./src",
+        "../typings.d.ts"
+    ]
+}

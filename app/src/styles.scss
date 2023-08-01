@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+div.dragbar {
+    position: fixed;
+    top: 1px;
+    left: 0;
+    right: 0;
+    height: 29.5px;
+    z-index: 99;
+    width: 100%;
+    user-select: none;
+    -webkit-app-region: drag;
+}

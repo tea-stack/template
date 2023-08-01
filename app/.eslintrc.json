@@ -1,0 +1,9 @@
+{
+    "extends": "@ng-all",
+    "parserOptions": {
+        "project": [
+            "./app/tsconfig.json"
+        ]
+    },
+    "root": true
+}

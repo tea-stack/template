@@ -1,0 +1,12 @@
+{
+    "extends": "@ts-all",
+    "parserOptions": {
+        "project": [
+            "main/tsconfig.json"
+        ]
+    },
+    "root": true,
+    "rules": {
+        "unicorn/prefer-module": "off"
+    }
+}

@@ -1,0 +1,5 @@
+{
+    "extends": [
+        "@style-all/stylelint-scss"
+    ]
+}
