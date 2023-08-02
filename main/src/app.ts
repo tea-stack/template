@@ -11,9 +11,9 @@ async function createMainWindow(): Promise<void> {
         frame: false,
         titleBarStyle: 'hidden',
         titleBarOverlay: {
-            color: '#00000000',
+            color: process.versions.electron.startsWith('22') ? '' : '#00000000',
             symbolColor: 'rgba(207, 207, 207, 0.9)',
-            height: 30,
+            height: 29,
         },
         webPreferences: {
             preload: path.join(__dirname, './preload.js'),
