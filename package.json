@@ -34,7 +34,7 @@
         "build:prod": "cross-env channel=prod electron-builder --config.productName=MyAwesomeTeaStack",
         "lint": "tsc -b && eslint --ext .ts,.html ./app && stylelint ./app/**/*.scss && eslint --ext .ts ./main",
         "start:app": "ng serve",
-        "start:main": "tsc -b && electron . -- --debug"
+        "start:main": "tsc -b && electron . -- --debug --serve"
     },
     "version": "0.0.0"
 }
