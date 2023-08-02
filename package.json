@@ -18,7 +18,9 @@
         "@ng-all/eslint-config": "^0.1.1",
         "@style-all/stylelint-scss": "^0.1.0",
         "@ts-all/index": "^0.2.10",
+        "cross-env": "^7.0.3",
         "electron": "^25.3.2",
+        "electron-builder": "^24.6.3",
         "typescript": "~5.1.6",
         "zone.js": "^0.13.1"
     },
@@ -27,6 +29,9 @@
     "private": true,
     "scripts": {
         "build:app": "ng build",
+        "build:main": "tsc -p ./main",
+        "build:out": "electron-builder",
+        "build:prod": "cross-env channel=prod electron-builder --config.productName=MyAwesomeTeaStack",
         "lint": "tsc -b && eslint --ext .ts,.html ./app && stylelint ./app/**/*.scss && eslint --ext .ts ./main",
         "start:app": "ng serve",
         "start:main": "tsc -b && electron . -- --debug"

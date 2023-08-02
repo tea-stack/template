@@ -1,0 +1,24 @@
+appId: tea.stack.template
+asar: true
+electronLanguages: zh-CN
+directories:
+  output: ./out
+files:
+  - ./dist/app/**/*
+  - ./dist/main/app.js
+  - ./dist/main/preload.js
+npmRebuild: false
+nsis:
+  allowToChangeInstallationDirectory: false
+  artifactName: ${productName}-Setup-${env.channel}-${version}-${arch}.${ext}
+  installerIcon: ./app/src/assets/logo.ico
+  oneClick: true
+  perMachine: false
+  uninstallDisplayName: ${productName}
+productName: TeaStackTemplate
+win:
+  icon: ./app/src/assets/logo.ico
+  target:
+    - arch:
+        - x64
+      target: nsis
