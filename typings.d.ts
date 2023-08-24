@@ -1,3 +1,5 @@
+/// <reference types="electron" />
+
 interface Window {
     electronBridge?: {
         isElectron: boolean;
@@ -18,3 +20,8 @@ interface IpcFailResult<T> {
     data: T | null;
     message?: string;
 }
+
+interface TeaIpcMain<T> extends Electron.IpcMain {
+    handle(channel: string, listener: (event: Electron.IpcMainInvokeEvent, ...args: any[]) => Promise<IpcResult<T>> | IpcResult<T>): void;
+}
+

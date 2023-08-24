@@ -18,7 +18,7 @@
         "./src/main.ts"
     ],
     "include": [
-        "./src",
-        "../typings.d.ts"
+        "../typings.d.ts",
+        "./src"
     ]
 }

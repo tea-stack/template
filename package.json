@@ -1,5 +1,9 @@
 {
-    "dependencies": {},
+    "author": {
+        "name": "tea-stack",
+        "url": "https://github.com/tea-stack/template"
+    },
+    "description": "TEA Stack for building your next Electron app",
     "devDependencies": {
         "@angular-devkit/build-angular": "^16.2.0",
         "@angular/animations": "^16.2.2",
