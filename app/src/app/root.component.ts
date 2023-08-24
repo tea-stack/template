@@ -10,7 +10,7 @@ import { BehaviorSubject } from 'rxjs';
     ],
     selector: 'tea-root',
     standalone: true,
-    template: '<h1>Greate! TEA Stack works</h1><p>with version {{ electronVersion$ | async }}</p>',
+    template: '<h1>Greate! TEA Stack works</h1><p>with version {{ electronVersion$ | async }}</p><p (click)="toggleDevTools();" style="cursor: pointer; text-decoration: underline;">Toggle DevTools</p>',
 })
 export class RootComponent {
 
@@ -26,6 +26,10 @@ export class RootComponent {
                 this.electronVersion$.next(ipcRes.data);
             }
         }).catch(() => { });
+    }
+
+    public async toggleDevTools(): Promise<void> {
+        await this.electron.invokeIpc('toggleDevTools');
     }
 
 }

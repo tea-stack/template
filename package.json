@@ -1,8 +1,5 @@
 {
-    "dependencies": {
-        "rxjs": "^7.8.1",
-        "tslib": "^2.6.2"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@angular-devkit/build-angular": "^16.2.0",
         "@angular/animations": "^16.2.2",
@@ -22,20 +19,23 @@
         "cross-env": "^7.0.3",
         "electron": "^26.1.0",
         "electron-builder": "^24.6.3",
+        "esbuild": "^0.19.2",
+        "rxjs": "^7.8.1",
+        "tslib": "^2.6.2",
         "typescript": "~5.1.6",
         "zone.js": "^0.13.1"
     },
-    "main": "./dist/main/app.js",
+    "main": "./dist/main/app.min.js",
     "name": "tea-stack",
     "private": true,
     "scripts": {
         "build:app": "ng build",
-        "build:main": "tsc -p ./main",
+        "build:main": "tsc -p ./main/tsconfig.preload.json && esbuild ./main/src/app.ts --tsconfig=./tsconfig.json --external:electron --bundle --platform=node --target=esnext --format=cjs --outfile=./dist/main/app.min.js --minify=true --legal-comments=none",
         "build:out": "electron-builder",
         "build:prod": "cross-env channel=prod electron-builder --config.productName=MyAwesomeTeaStack",
         "lint": "tsc -b && eslint --ext .ts,.html ./app && stylelint ./app/**/*.scss && eslint --ext .ts ./main",
         "start:app": "ng serve",
-        "start:main": "tsc -b && electron . -- --debug --serve"
+        "start:main": "tsc -b && electron ./dist/main/app.js -- --debug"
     },
     "version": "0.0.0"
 }

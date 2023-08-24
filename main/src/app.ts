@@ -1,5 +1,6 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import * as path from 'node:path';
+import { registerIpcHandlers } from './libs';
 
 const isDebug: boolean = process.argv.includes('--debug');
 const isServe: boolean = process.argv.includes('--serve');
@@ -26,10 +27,6 @@ async function createMainWindow(): Promise<void> {
     if (isDebug) {
         mainWindow.webContents.openDevTools();
     }
-}
-
-function registerIpcHandlers(): void {
-    ipcMain.handle('getVersion', () => ({ error: false, data: app.getVersion() }));
 }
 
 async function main(): Promise<void> {

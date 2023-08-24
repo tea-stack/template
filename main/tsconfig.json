@@ -9,5 +9,8 @@
     "files": [
         "./src/app.ts",
         "./src/preload.ts"
+    ],
+    "include": [
+        "./src/*/*.ts"
     ]
 }

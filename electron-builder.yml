@@ -5,7 +5,7 @@ directories:
   output: ./out
 files:
   - ./dist/app/**/*
-  - ./dist/main/app.js
+  - ./dist/main/app.min.js
   - ./dist/main/preload.js
 npmRebuild: false
 nsis:

@@ -7,14 +7,14 @@
 * `main` means the TypeScript project for the main process of Electron
 
 ## Build
-* Use `@angular/cli` to build web assets for the renderer process
-* Use `tsc` to build for the main process
-* Use [`electron-builder`](https://www.electron.build) to build installers/executables
+* Using [`@angular/cli`](https://angular.io/cli) to build web assets for the renderer process
+* Using [`esbuild`](https://esbuild.github.io) to build a bundled `app.min.js` for the main process
+* Using [`electron-builder`](https://www.electron.build) to build installers/executables
 
 ## Develop
 * `npm install` to get the deps
 * `npm run start:app` to serve the angular app at http://localhost:4200
-* `npm run start:main` to start up electron
+* `npm run start:main -- --serve` to start up electron to debug with the served angular app
 * `npm run build:out` to get the output by `electron-builder`
 
 ## Build installers/executables
