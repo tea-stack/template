@@ -1,9 +1,11 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
+import { promises as fs } from 'node:fs';
+import * as path from 'node:path';
 
 export function registerIpcHandlers(): void {
-    (ipcMain as TeaIpcMain<string>).handle('getVersion', () => ({ error: false, data: app.getVersion() }));
+    ipcMain.handle('getVersion', () => ({ error: false, data: app.getVersion() }));
 
-    (ipcMain as TeaIpcMain<boolean>).handle('toggleDevTools', () => {
+    ipcMain.handle('toggleDevTools', () => {
         const focusedWindow: BrowserWindow | null = BrowserWindow.getFocusedWindow();
         if (focusedWindow == null) {
             return { error: true, data: false, message: 'Error handling toggleDevTools no focused window' };
@@ -14,5 +16,11 @@ export function registerIpcHandlers(): void {
         } catch (err) {
             return { error: true, data: false, message: `Error handling toggleDevTools ${err instanceof Error ? err.message : ''}` };
         }
+    });
+
+    ipcMain.handle('writeUserDataFile', async (_, fileName: string, fileContent: string) => {
+        const targetFilePath: string = path.join(app.getPath('userData'), fileName);
+        await fs.writeFile(targetFilePath, fileContent, { encoding: 'utf8' });
+        return { error: false, data: targetFilePath };
     });
 }

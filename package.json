@@ -19,7 +19,7 @@
         "@ng-all/eslint-config": "^0.1.1",
         "@style-all/stylelint-scss": "^0.1.0",
         "@ts-all/index": "^0.2.10",
-        "@types/node": "^20.5.4",
+        "@types/node": "^20.5.7",
         "cross-env": "^7.0.3",
         "electron": "^26.1.0",
         "electron-builder": "^24.6.3",
@@ -34,12 +34,12 @@
     "private": true,
     "scripts": {
         "build:app": "ng build",
-        "build:main": "tsc -p ./main/tsconfig.preload.json && esbuild ./main/src/app.ts --tsconfig=./tsconfig.json --external:electron --bundle --platform=node --target=esnext --format=cjs --outfile=./dist/main/app.min.js --minify=true --legal-comments=none",
+        "build:main": "tsc --project ./main/tsconfig.preload.json && esbuild ./main/src/app.ts --tsconfig=./tsconfig.json --external:electron --bundle --platform=node --target=esnext --format=cjs --outfile=./dist/main/app.min.js --minify=true --legal-comments=none",
         "build:out": "electron-builder",
         "build:prod": "cross-env channel=prod electron-builder --config.productName=MyAwesomeTeaStack",
-        "lint": "tsc -b && eslint --ext .ts,.html ./app && stylelint ./app/**/*.scss && eslint --ext .ts ./main",
+        "lint": "tsc --build && eslint --ext .ts,.html ./app && stylelint ./app/**/*.scss && eslint --ext .ts ./main",
         "start:app": "ng serve",
-        "start:main": "tsc -b && electron ./dist/main/app.js -- --debug"
+        "start:main": "tsc --build && electron ./dist/main/app.js -- --debug"
     },
     "version": "0.0.0"
 }

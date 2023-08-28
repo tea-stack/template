@@ -18,7 +18,7 @@ async function createMainWindow(): Promise<void> {
         },
         webPreferences: {
             preload: path.join(__dirname, './preload.js'),
-            additionalArguments: [isDebug ? '--isDebug' : ''],
+            additionalArguments: [isDebug ? '--isElectronDebug' : ''],
         },
     });
 

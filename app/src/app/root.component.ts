@@ -19,7 +19,7 @@ export class RootComponent {
     public constructor(
         private readonly electron: ElectronService,
     ) {
-        this.electron.invokeIpc<string>('getVersion').then((ipcRes: IpcResult<string>) => {
+        this.electron.invokeIpc('getVersion').then((ipcRes: IpcResult<string>) => {
             if (ipcRes.error) {
                 console.error(ipcRes.message);
             } else {
