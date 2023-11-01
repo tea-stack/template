@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "node16",
+        "moduleResolution": "node16",
         "outDir": "../dist/main",
         "sourceMap": false,
         "target": "esnext"
