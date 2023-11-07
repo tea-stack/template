@@ -1,6 +1,6 @@
 {
     "extends": "./package.json",
     "devDependencies": {
-        "electron": "22.3.18"
+        "electron": "22.3.27"
     }
 }
