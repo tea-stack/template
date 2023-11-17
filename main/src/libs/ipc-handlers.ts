@@ -2,6 +2,10 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import { promises as fs } from 'node:fs';
 import * as path from 'node:path';
 
+/**
+ * register ipc handle callback functions
+ * @description Please define the ipc handlers in `typings.d.ts` first to make it strict in both `app` and `main`
+ */
 export function registerIpcHandlers(): void {
     ipcMain.handle('getVersion', () => ({ error: false, data: app.getVersion() }));
 

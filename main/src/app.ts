@@ -22,7 +22,7 @@ async function createMainWindow(): Promise<void> {
         },
     });
 
-    await (isServe ? mainWindow.loadURL('http://localhost:4200') : mainWindow.loadFile(path.join(__dirname, '../app/index.html')));
+    await (isServe ? mainWindow.loadURL('http://localhost:4200') : mainWindow.loadFile(path.join(__dirname, '../app/browser/index.html')));
 
     if (isDebug) {
         mainWindow.webContents.openDevTools();

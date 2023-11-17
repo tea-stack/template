@@ -12,15 +12,13 @@
         "tea-stack": {
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
+                    "builder": "@angular-devkit/build-angular:application",
                     "configurations": {
                         "development": {
-                            "buildOptimizer": false,
                             "extractLicenses": false,
                             "namedChunks": true,
                             "optimization": false,
-                            "sourceMap": true,
-                            "vendorChunk": true
+                            "sourceMap": true
                         },
                         "production": {
                             "budgets": [
@@ -41,7 +39,7 @@
                         ],
                         "index": "./app/src/index.html",
                         "inlineStyleLanguage": "scss",
-                        "main": "./app/src/main.ts",
+                        "browser": "./app/src/main.ts",
                         "outputPath": "./dist/app",
                         "polyfills": [
                             "zone.js"
@@ -56,17 +54,17 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "tea-stack:build"
+                        "buildTarget": "tea-stack:build"
                     }
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "development": {
-                            "browserTarget": "tea-stack:build:development"
+                            "buildTarget": "tea-stack:build:development"
                         },
                         "production": {
-                            "browserTarget": "tea-stack:build:production"
+                            "buildTarget": "tea-stack:build:production"
                         }
                     },
                     "defaultConfiguration": "development"
