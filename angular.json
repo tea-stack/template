@@ -12,12 +12,13 @@
         "tea-stack": {
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:application",
+                    "builder": "@angular-devkit/build-angular:browser-esbuild",
                     "configurations": {
                         "development": {
-                            "extractLicenses": false,
+                            "buildOptimizer": false,
                             "namedChunks": true,
                             "optimization": false,
+                            "outputHashing": "none",
                             "sourceMap": true
                         },
                         "production": {
@@ -28,7 +29,8 @@
                                     "type": "anyComponentStyle"
                                 }
                             ],
-                            "outputHashing": "all"
+                            "progress": false,
+                            "statsJson": true
                         }
                     },
                     "defaultConfiguration": "production",
@@ -37,9 +39,14 @@
                             "./app/src/favicon.ico",
                             "./app/src/assets"
                         ],
+                        "buildOptimizer": true,
+                        "extractLicenses": false,
                         "index": "./app/src/index.html",
                         "inlineStyleLanguage": "scss",
-                        "browser": "./app/src/main.ts",
+                        "main": "./app/src/main.ts",
+                        "namedChunks": false,
+                        "optimization": true,
+                        "outputHashing": "all",
                         "outputPath": "./dist/app",
                         "polyfills": [
                             "zone.js"
@@ -70,7 +77,7 @@
                     "defaultConfiguration": "development"
                 }
             },
-            "prefix": "app",
+            "prefix": "tea",
             "projectType": "application",
             "root": "",
             "schematics": {

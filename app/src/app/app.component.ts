@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, WritableSignal, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Inject, WritableSignal, signal } from '@angular/core';
 import { ElectronService } from './shared/services';
 
 @Component({
@@ -12,9 +13,17 @@ export class AppComponent {
     public appVersion: WritableSignal<string> = signal('🧐🧐🧐');
 
     public constructor(
+        @Inject(DOCUMENT) private readonly document: Document,
         private readonly electron: ElectronService,
     ) {
-        this.electron.invokeIpc('getVersion').then((ipcRes: IpcResult<string>) => {
+        void this.electron.invokeIpc('getElectronVersion').then(res => {
+            if (!res.error && res.data.startsWith('22')) {
+                // remove drag bar for win7 regarding of window titlebar
+                this.document.querySelector('div.dragbar')?.remove();
+            }
+        });
+
+        void this.electron.invokeIpc('getVersion').then((ipcRes: IpcResult<string>) => {
             if (ipcRes.error) {
                 console.error(ipcRes.message);
             } else {
@@ -22,7 +31,7 @@ export class AppComponent {
                     this.appVersion.set(`${ipcRes.data}🎉`);
                 }, 1800);
             }
-        }).catch(() => { });
+        });
     }
 
     public async toggleDevTools(): Promise<void> {

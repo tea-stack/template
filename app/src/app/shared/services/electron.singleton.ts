@@ -22,6 +22,7 @@ export class ElectronService {
             }
             return ipcRes;
         }
+        // eslint-disable-next-line deprecation/deprecation
         const ipcRes: IpcResult<T> = await window.electronBridge.invokeIpc<T>(channel, ...args).catch(err => ({
             error: true,
             data: null,

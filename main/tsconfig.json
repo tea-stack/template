@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-        "module": "node16",
-        "moduleResolution": "node16",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
         "outDir": "../dist/main",
         "sourceMap": false,
         "target": "esnext"

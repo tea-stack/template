@@ -9,6 +9,8 @@ import * as path from 'node:path';
 export function registerIpcHandlers(): void {
     ipcMain.handle('getVersion', () => ({ error: false, data: app.getVersion() }));
 
+    ipcMain.handle('getElectronVersion', () => ({ error: false, data: process.versions.electron }));
+
     ipcMain.handle('toggleDevTools', () => {
         const focusedWindow: BrowserWindow | null = BrowserWindow.getFocusedWindow();
         if (focusedWindow == null) {

@@ -14,6 +14,7 @@
         "noImplicitOverride": true,
         "noImplicitReturns": true,
         "noPropertyAccessFromIndexSignature": true,
+        "noUncheckedIndexedAccess": true,
         "sourceMap": true,
         "strict": true,
         "target": "es2022",

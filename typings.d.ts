@@ -2,18 +2,20 @@
 
 interface IpcMethods {
     getVersion(): string;
+    getElectronVersion(): string;
+
     toggleDevTools(): boolean;
+
     writeUserDataFile(fileName: string, fileContent: string): string;
 }
 
 interface Window {
     electronBridge?: {
         isElectronDebug: boolean;
+
         invokeIpc<K extends keyof IpcMethods>(channel: K, ...args: Parameters<IpcMethods[K]>): Promise<IpcResult<ReturnType<IpcMethods[K]>>>;
 
-        /**
-         * @deprecated Please use explict signatures defined in IpcMethods
-         */
+        /** @deprecated Please use explict signatures defined in IpcMethods */
         invokeIpc<T = unknown>(channel: string, ...args: Array<any>): Promise<IpcResult<T>>;
     }
 }
@@ -37,9 +39,7 @@ declare namespace Electron {
     interface IpcMain {
         handle<K extends keyof IpcMethods>(channel: K, listener: (event: Electron.IpcMainInvokeEvent, ...args: TsParameters<IpcMethods[K]>) => Promise<IpcResult<ReturnType<IpcMethods[K]>>> | IpcResult<ReturnType<IpcMethods[K]>>): void;
 
-        /**
-         * @deprecated Please use explict signatures defined in IpcMethods
-         */
+        /** @deprecated Please use explict signatures defined in IpcMethods */
         handle(channel: string, listener: (event: Electron.IpcMainInvokeEvent, ...args: Array<any>) => Promise<IpcResult<unknown>> | IpcResult<unknown>): void;
     }
 }
