@@ -7,26 +7,26 @@ import * as path from 'node:path';
  * @description Please define the ipc handlers in `typings.d.ts` first to make it strict in both `app` and `main`
  */
 export function registerIpcHandlers(): void {
-    ipcMain.handle('getVersion', () => ({ error: false, data: app.getVersion() }));
+    ipcMain.handle('getVersion', () => ({ ok: true, data: app.getVersion() }));
 
-    ipcMain.handle('getElectronVersion', () => ({ error: false, data: process.versions.electron }));
+    ipcMain.handle('getElectronVersion', () => ({ ok: true, data: process.versions.electron }));
 
     ipcMain.handle('toggleDevTools', () => {
         const focusedWindow: BrowserWindow | null = BrowserWindow.getFocusedWindow();
         if (focusedWindow == null) {
-            return { error: true, data: false, message: 'Error handling toggleDevTools no focused window' };
+            return { ok: false, data: false, message: 'Error handling toggleDevTools no focused window' };
         }
         try {
             focusedWindow.webContents.toggleDevTools();
-            return { error: false, data: true };
+            return { ok: true, data: true };
         } catch (err) {
-            return { error: true, data: false, message: `Error handling toggleDevTools ${err instanceof Error ? err.message : ''}` };
+            return { ok: false, data: false, message: `Error handling toggleDevTools ${err instanceof Error ? err.message : ''}` };
         }
     });
 
     ipcMain.handle('writeUserDataFile', async (_, fileName: string, fileContent: string) => {
         const targetFilePath: string = path.join(app.getPath('userData'), fileName);
         await fs.writeFile(targetFilePath, fileContent, { encoding: 'utf8' });
-        return { error: false, data: targetFilePath };
+        return { ok: true, data: targetFilePath };
     });
 }

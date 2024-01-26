@@ -13,7 +13,7 @@ export class ElectronService {
     public async invokeIpc<T>(channel: string, ...args: Array<unknown>): Promise<IpcResult<T>> {
         if (!window.electronBridge) {
             const ipcRes: IpcFailResult<T> = {
-                error: true,
+                ok: false,
                 data: null,
                 message: `Error invoking remote method '${channel}': No electronBridge detected`,
             };
@@ -24,11 +24,11 @@ export class ElectronService {
         }
         // eslint-disable-next-line deprecation/deprecation
         const ipcRes: IpcResult<T> = await window.electronBridge.invokeIpc<T>(channel, ...args).catch(err => ({
-            error: true,
+            ok: false,
             data: null,
             message: err instanceof Error ? err.message : `Error invoking remote method '${channel}'`,
         }));
-        if (ipcRes.error && (isDevMode() || window.electronBridge.isElectronDebug)) {
+        if (!ipcRes.ok && (isDevMode() || window.electronBridge.isElectronDebug)) {
             console.error(ipcRes.message);
         }
         return ipcRes;

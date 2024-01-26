@@ -17,19 +17,19 @@ export class AppComponent {
         private readonly electron: ElectronService,
     ) {
         void this.electron.invokeIpc('getElectronVersion').then(res => {
-            if (!res.error && res.data.startsWith('22')) {
+            if (res.ok && res.data.startsWith('22')) {
                 // remove drag bar for win7 regarding of window titlebar
                 this.document.querySelector('div.dragbar')?.remove();
             }
         });
 
         void this.electron.invokeIpc('getVersion').then((ipcRes: IpcResult<string>) => {
-            if (ipcRes.error) {
-                console.error(ipcRes.message);
-            } else {
+            if (ipcRes.ok) {
                 setTimeout(() => {
                     this.appVersion.set(`${ipcRes.data}🎉`);
                 }, 1800);
+            } else {
+                console.error(ipcRes.message);
             }
         });
     }

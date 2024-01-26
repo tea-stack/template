@@ -23,12 +23,12 @@ interface Window {
 type IpcResult<T> = IpcSuccessResult<T> | IpcFailResult<T>
 
 interface IpcSuccessResult<T> {
-    error: false;
+    ok: true;
     data: T;
 }
 
 interface IpcFailResult<T> {
-    error: true;
+    ok: false;
     data: T | null;
     message?: string;
 }
